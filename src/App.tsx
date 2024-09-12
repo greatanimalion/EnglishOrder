@@ -19,9 +19,6 @@ const App: React.FC = () => {
   const setTheme = (checked: boolean) => {
     setThemValue(checked)
   }
-  const {
-    
-  } =theme.useToken();
   return (
     <ConfigProvider
       theme={{
@@ -30,8 +27,8 @@ const App: React.FC = () => {
       }}
     >
       <Layout style={{ height: '100vh'}}  >
-        <Sider trigger={null} collapsible collapsed={collapsed} style={{backgroundColor:'#141414'}}> 
-          <Logo title='四六级数据' showTitle={!collapsed}></Logo>
+        <Sider trigger={null} collapsible collapsed={collapsed} style={{backgroundColor:themValue?'#FFFFFF':'#141414'}}> 
+          <Logo title='四六级数据' showTitle={!collapsed} theme={themValue} ></Logo>
           <div className="demo-logo-vertical" />
           <Menu
             theme='light'
@@ -57,7 +54,7 @@ const App: React.FC = () => {
           />
         </Sider>
         <Layout>
-          <Header style={{ padding: 0, background:"#141414" }}>
+          <Header style={{ padding: 0, background:themValue?"#FFFFFF":"#141414" }}>
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -75,7 +72,7 @@ const App: React.FC = () => {
               margin: '24px 16px',
               padding: 24,
               minHeight: 280,
-              background: '#141414',
+              background: themValue?'#FFFFFF':'#141414',
               borderRadius: '8px',
             }}
           >
