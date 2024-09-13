@@ -1,0 +1,13 @@
+{
+    "side": {
+        "RecentData": "RecentData",
+        "ListOfApplicants": "ListOfApplicants",
+        "PublishAnAnnouncement": "PublishAnnounce"
+    },
+    "login": {
+        "login": "login",
+        "register": "register",
+        "username": "username",
+        "password": "password"
+    }
+}
