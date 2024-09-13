@@ -4,12 +4,13 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
-
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Button, ConfigProvider, Layout, Menu, theme } from 'antd';
+import { Button, ConfigProvider, Layout, Menu, Popover, theme } from 'antd';
 import { Switch } from 'antd';
+import i18 from '@/locales/i18next-config'
+import CN_EN_SVG from './components/CN-EN';
 const { Header, Sider, Content } = Layout;
 
 const App: React.FC = () => {
@@ -19,15 +20,17 @@ const App: React.FC = () => {
   const setTheme = (checked: boolean) => {
     setThemValue(checked)
   }
+  const [language, setLanguage] = useState('zh-CN')
+  i18.changeLanguage(language)
   return (
     <ConfigProvider
       theme={{
         algorithm:
-          themValue? theme.defaultAlgorithm : theme.darkAlgorithm
+          themValue ? theme.defaultAlgorithm : theme.darkAlgorithm
       }}
     >
-      <Layout style={{ height: '100vh'}}  >
-        <Sider trigger={null} collapsible collapsed={collapsed} style={{backgroundColor:themValue?'#FFFFFF':'#141414'}}> 
+      <Layout style={{ height: '100vh', minHeight: 280, }}  >
+        <Sider trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: themValue ? '#FFFFFF' : '#141414' }}>
           <Logo title='四六级数据' showTitle={!collapsed} theme={themValue} ></Logo>
           <div className="demo-logo-vertical" />
           <Menu
@@ -38,23 +41,23 @@ const App: React.FC = () => {
               {
                 key: '1',
                 icon: <UserOutlined />,
-                label: '近年数据',
+                label: i18.t('side.RecentData'),
               },
               {
                 key: '2',
                 icon: <VideoCameraOutlined />,
-                label: 'nav 2',
+                label: i18.t('side.ListOfApplicants'),
               },
               {
                 key: '3',
                 icon: <UploadOutlined />,
-                label: 'nav 3',
+                label: i18.t('side.PublishAnAnnouncement'),
               },
             ]}
           />
         </Sider>
         <Layout>
-          <Header style={{ padding: 0, background:themValue?"#FFFFFF":"#141414" }}>
+          <Header style={{ padding: 0, background: themValue ? "#FFFFFF" : "#141414" }}>
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -65,14 +68,28 @@ const App: React.FC = () => {
                 height: 64,
               }}
             />
-            <Switch checkedChildren="亮" unCheckedChildren="暗" defaultChecked onChange={setTheme} />
+            <Switch checkedChildren="亮" unCheckedChildren="暗" defaultChecked onChange={setTheme} style={{ float: 'right', marginRight: '10px', marginTop: '21px' }} />
+            <div style={{ float: 'right' }}>
+              <Popover style={{ padding: 0 }} content={<>
+                <div>
+                  <Button style={{margin:'0'}} onClick={() => { setLanguage('zh-CN') }} type="text">&nbsp;&nbsp;中文&nbsp;&nbsp;</Button>
+                </div>
+                <div>
+                  <Button  onClick={() => { setLanguage('en-US') }} type="text">English</Button>
+                </div>
+
+              </>
+              } >
+                <span><CN_EN_SVG></CN_EN_SVG></span>
+              </Popover>
+            </div>
+
           </Header>
           <Content
             style={{
               margin: '24px 16px',
               padding: 24,
-              minHeight: 280,
-              background: themValue?'#FFFFFF':'#141414',
+              background: themValue ? '#FFFFFF' : '#141414',
               borderRadius: '8px',
             }}
           >

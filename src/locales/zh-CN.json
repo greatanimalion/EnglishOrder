@@ -1,0 +1,13 @@
+{
+    "side": {
+        "RecentData": "近年数据",
+        "ListOfApplicants": "报考名单",
+        "PublishAnAnnouncement": "发布公告"
+    },
+    "login": {
+        "login": "登录",
+        "register": "注册",
+        "username": "用户名",
+        "password": "密码"
+    }
+}
