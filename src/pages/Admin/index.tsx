@@ -12,16 +12,17 @@ import { Switch } from 'antd';
 import i18 from '@/locales/i18next-config'
 import CN_EN_SVG from '@/components/CN-EN';
 import { Link, Outlet } from "react-router-dom";
+import { getInitialProps } from 'react-i18next';
 const { Header, Sider, Content } = Layout;
 
-const App: React.FC = () => {
+const App: React.FC = () => {  
   const [collapsed, setCollapsed] = useState(false);
   //主题默认为true，亮
   const [themValue, setThemValue] = useState<boolean>(true);
   const setTheme = (checked: boolean) => {
     setThemValue(checked)
   }
-  const [language, setLanguage] = useState('zh-CN')
+  const [language, setLanguage] = useState<string>(getInitialProps().initialLanguage)
   i18.changeLanguage(language)
   return (
     <ConfigProvider
