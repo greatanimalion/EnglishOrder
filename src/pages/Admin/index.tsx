@@ -82,7 +82,6 @@ const App: React.FC = () => {
                 <div>
                   <Button onClick={() => { setLanguage('en-US') }} type="text">English</Button>
                 </div>
-
               </>
               } >
                 <span><CN_EN_SVG></CN_EN_SVG></span>
