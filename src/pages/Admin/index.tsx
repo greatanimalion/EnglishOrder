@@ -13,14 +13,17 @@ import i18 from '@/locales/i18next-config'
 import CN_EN_SVG from '@/components/CN-EN';
 import { Link, Outlet } from "react-router-dom";
 import { getInitialProps } from 'react-i18next';
+import useThemeStore from '@/store/index';
 const { Header, Sider, Content } = Layout;
 
 const App: React.FC = () => {  
   const [collapsed, setCollapsed] = useState(false);
   //主题默认为true，亮
-  const [themValue, setThemValue] = useState<boolean>(true);
+  // const [themValue, setThemValue] = useState<boolean>(true);
+  const themValue=useThemeStore<boolean>((state)=>state.theme)
+  const setThemeValue=useThemeStore(state=>state.setTheme)
   const setTheme = (checked: boolean) => {
-    setThemValue(checked)
+    setThemeValue(checked)
   }
   const [language, setLanguage] = useState<string>(getInitialProps().initialLanguage)
   i18.changeLanguage(language)
@@ -70,7 +73,7 @@ const App: React.FC = () => {
                 height: 64,
               }}
             />
-            <Switch checkedChildren="亮" unCheckedChildren="暗" defaultChecked onChange={setTheme} style={{ float: 'right', marginRight: '10px', marginTop: '21px' }} />
+            <Switch checkedChildren="亮" unCheckedChildren="暗"  defaultChecked={themValue} onChange={setTheme} style={{ float: 'right', marginRight: '10px', marginTop: '21px' }} />
             <div style={{ float: 'right' }}>
               <Popover style={{ padding: 0 }} content={<>
                 <div>
