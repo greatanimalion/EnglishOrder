@@ -129,7 +129,7 @@ const App: React.FC = () => {
               style={{
                 margin: '24px 16px',
                 padding: 14,
-                background: themValue ? '#FFFFFF' : '#141414',
+                background: themValue ? '#F5F5F5' : '#141414',
                 borderRadius: '8px',
                 overflowY: 'scroll',
               }}>

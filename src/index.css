@@ -5,3 +5,16 @@
 ::-webkit-scrollbar {
   width: 0;
 }
+h2{
+  font-family: cursive;
+  padding-top: 10px;
+}
+ol{
+  /* list-style: none; */
+  padding: 20px;
+  li{
+     margin: 5px;
+     font-family: fantasy;
+     font-size: 15px;
+  }
+}

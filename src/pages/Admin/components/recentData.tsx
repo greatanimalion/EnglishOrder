@@ -3,9 +3,10 @@ import * as echarts from "echarts";
 import style from "./style/recentData.module.css";
 import { CollapsedContext } from "@/pages/Admin/index";
 import useThemeStore from "@/store/index";
+import mapJson from "@/locales/map.json";
 const options1 = {
   title: {
-    text: '近年数据'
+    text: '本校近年数据'
   },
   tooltip: {
     trigger: 'axis'
@@ -93,19 +94,71 @@ const options2 = {
   ],
   backgroundColor: 'rgba(0,0,0,0)'
 };
+const options3 ={
+  visualMap: {
+    min: 0,
+    max: 200,
+    realtime: false,
+    calculable: true,
+    inRange: {
+      color: ['lightskyblue', 'yellow', 'orangered']
+    }
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  titel: {
+    text: '河南省地图'
+  },
+  series: [
+    {
+      name: '河南省各省四六级报名总数',
+      type: 'map',
+      map: 'GX',
+      label: {
+        show: true
+      },
+      data:[
+        { name: '郑州市', value: 98 },
+        { name: '洛阳市', value: 100 },
+        { name: '新乡市', value: 10 },
+        { name: '许昌市', value: 120 },
+        { name: '平顶山市', value: 0 },
+        { name: '安阳市', value: 150 },
+        { name: '焦作市', value: 79 },
+        { name: '濮阳市', value: 144 },
+        { name: '开封市', value: 152 },
+        { name: '商丘市', value: 16 },
+        { name: '周口市', value: 230 },
+        { name: '漯河市', value: 58 },
+        { name: '驻马店市', value: 10 },
+        { name: '三门峡市', value: 120 },
+        { name: '济源市', value: 1001 },
+        { name: '南阳市', value: 1012 },
+        { name: '信阳市', value: 15},
+        { name: '驻马店市', value: 70 },
+        { name: '鹤壁市', value: 90 },
+        { name: '济源市', value: 100 },
+      ]
+    }
+  ],
+  backgroundColor: 'rgba(0,0,0,0)'
+}
 let chartInstance: echarts.ECharts
 let pieInstance: echarts.ECharts
+let mapInstance: echarts.ECharts
 function Chart() {
   const chartRef = useRef(null);
   const pieCharts = useRef(null);
+  const mapRef = useRef(null);
   const collapsed = useContext(CollapsedContext);
   const themeStore = useThemeStore();
   function renderChart() {
     try {
       chartInstance && chartInstance.dispose();
       pieInstance && pieInstance.dispose();
-      chartInstance = echarts.init(chartRef.current,themeStore.theme? undefined : 'dark');
-      pieInstance = echarts.init(pieCharts.current,themeStore.theme? undefined : 'dark');
+      chartInstance = echarts.init(chartRef.current, themeStore.theme ? undefined : 'dark');
+      pieInstance = echarts.init(pieCharts.current, themeStore.theme ? undefined : 'dark');
       chartInstance.setOption(options1);
       pieInstance.setOption(options2);
     } catch (error: any) {
@@ -120,20 +173,23 @@ function Chart() {
   useEffect(() => {
     renderChart();
     window.addEventListener("resize", resizeHandler);
+    mapInstance = echarts.init(mapRef.current);
+    echarts.registerMap('GX', mapJson as any);
+    mapInstance.setOption(options3)
     return () => {
       chartInstance && chartInstance.dispose();
       window.removeEventListener("resize", resizeHandler);
     }
   }, []);
   useEffect(() => {
-    setTimeout(renderChart, 100)
-  })
+    setTimeout(renderChart, 0)
+  }, [themeStore.theme])
   useEffect(() => {
     setTimeout(resizeHandler, 100)
   }, [collapsed])
   return (
     <div className={style.container}>
-      <div style={{ backgroundColor: themeStore.theme ? "rgb(250 250 250)" : '#292929' }} className={style.header}>
+      <div style={{ backgroundColor: themeStore.theme ? "#FFF" : '#292929' }} className={style.header}>
         <div className={style.greeting}>
           <h2>欢迎您，来自河南科技学院的管理员！</h2>
           <p>今天天气: 晴 29℃~32℃, 空气质量: 优 空气质量指数为5.0，属于良好级别。</p>
@@ -151,13 +207,27 @@ function Chart() {
       </div>
       <div className={style.chart}>
         <div >
-          <div style={{ height: "400px" }} ref={chartRef} />
+          <div style={{ height: "400px", backgroundColor: themeStore.theme ? '#ffffff' : '#292929' }} ref={chartRef} />
         </div>
-        <div style={{ marginTop: '30px' }}>
-          <div ref={pieCharts} style={{ height: '400px' }}></div>
+        <div>
+          <div  style={{ height: '400px', backgroundColor: themeStore.theme ? '#ffffff' : '#292929' }}>
+            <h2>本校四六级分布情况</h2>
+            <div style={{ height: '355px', transform: 'translateY(40px)',overflow:'visible' ,zIndex:2}} ref={pieCharts}></div>
+          </div>
         </div>
       </div>
-
+      <div className={style.announce} >
+        <div style={{ backgroundColor: themeStore.theme ? "#FFF" : '#292929' }}>
+          <h2 >英语四六级公告</h2>
+          <ol>
+            <li>本次四六级将在6月1日至6月7日进行，考试时间为10:00-12:00。</li>
+            <li>考试地点：河南科技学院。</li>
+            <li>考试形式：闭卷。</li>
+            <li>考试内容：阅读、听力、口语。</li>
+          </ol>
+        </div>
+        <div style={{ backgroundColor: themeStore.theme ? "#FFF" : '#292929' }} ref={mapRef}></div>
+      </div>
     </div>
   );
 }
