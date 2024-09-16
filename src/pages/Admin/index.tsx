@@ -19,7 +19,7 @@ import { SUN, NIGHT } from "@/components/SUN-NIGHT";
 
 const { Header, Sider, Content } = Layout;
 
-export const CollapsedContext =React.createContext(false)
+export const CollapsedContext = React.createContext(false)
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [fullscreen, setFullscreen] = useState(false)
@@ -39,107 +39,104 @@ const App: React.FC = () => {
   return (
     <ConfigProvider
       theme={{
-        algorithm:
-          themValue ? theme.defaultAlgorithm : theme.darkAlgorithm
+        algorithm: themValue ? theme.defaultAlgorithm : theme.darkAlgorithm
       }}
     >
       <CollapsedContext.Provider value={collapsed}>
-      <Layout style={{ height: '100vh', minHeight: 280, }}  >
-        <Sider trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: themValue ? '#FFFFFF' : '#141414' }}>
-          <Logo title='四六级数据' showTitle={!collapsed} theme={themValue} ></Logo>
-          <div className="demo-logo-vertical" />
-          <Menu
-            theme='light'
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            items={[
-              {
-                key: '1',
-                icon: <UserOutlined />,
-                label: <Link to={'/admin/recentData'}>{i18.t('side.RecentData')}</Link>,
-              },
-              {
-                key: '2',
-                icon: <VideoCameraOutlined />,
-                label: i18.t('side.ListOfApplicants'),
-              },
-              {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: i18.t('side.PublishAnAnnouncement'),
-              },
-            ]}
-          />
-        </Sider>
-        <Layout>
-          <Header style={{ padding: 0, background: themValue ? "#FFFFFF" : "#141414" }}>
-            <Tooltip placement="bottom" title={collapsed ? i18.t('header.expand') : i18.t('header.collapse')}>
-              <Button
-                type="text"
-                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                onClick={() => setCollapsed(!collapsed)}
-                style={{
-                  fontSize: '16px',
-                  width: 64,
-                  height: 64,
-                }}
-              />
-            </Tooltip>
-            <div style={{ float: 'right' }}>
-              <Tooltip placement='bottom' title={i18.t('header.switchTheme')} >
-                <Button
-                  type='text'
-                  icon={!themValue ? <SUN /> : <NIGHT />}
-                  onClick={() => setTheme(!themValue)}
-                  style={{
-                    fontSize: '16px',
-                    width: 64,
-                    height: 64,
-                  }}
-                >
-                </Button>
-              </Tooltip>
-            </div>
-            <div style={{ float: 'right' }}>
-              <Popover style={{ padding: 0 }} content={<>
-                <div>
-                  <Button style={{ margin: '0' }} onClick={() => { setLanguage('zh-CN') }} type="text">&nbsp;&nbsp;中文&nbsp;&nbsp;</Button>
-                </div>
-                <div>
-                  <Button onClick={() => { setLanguage('en-US') }} type="text">English</Button>
-                </div>
-              </>
-              } >
-                <span><CN_EN_SVG></CN_EN_SVG></span>
-              </Popover>
-            </div>
-            <div style={{ float: 'right' }}>
-              <Tooltip placement="bottom" title={fullscreen ? i18.t('header.exitFullScreen') : i18.t('header.fullScreen')}>
+        <Layout style={{ height: '100vh', minHeight: 280, }}  >
+          <Sider trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: themValue ? '#FFFFFF' : '#141414' }}>
+            <Logo title='四六级数据' showTitle={!collapsed} theme={themValue} ></Logo>
+            <div className="demo-logo-vertical" />
+            <Menu
+              theme='light'
+              mode="inline"
+              defaultSelectedKeys={['1']}
+              items={[
+                {
+                  key: '1',
+                  icon: <UserOutlined />,
+                  label: <Link to={'/admin/recentData'}>{i18.t('side.RecentData')}</Link>,
+                },
+                {
+                  key: '2',
+                  icon: <VideoCameraOutlined />,
+                  label: i18.t('side.ListOfApplicants'),
+                },
+                {
+                  key: '3',
+                  icon: <UploadOutlined />,
+                  label: i18.t('side.PublishAnAnnouncement'),
+                },
+              ]} />
+          </Sider>
+          <Layout>
+            <Header style={{ padding: 0, background: themValue ? "#FFFFFF" : "#141414" }}>
+              <Tooltip placement="bottom" title={collapsed ? i18.t('header.expand') : i18.t('header.collapse')}>
                 <Button
                   type="text"
-                  icon={fullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
-                  onClick={fullScreen}
+                  icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                  onClick={() => setCollapsed(!collapsed)}
                   style={{
                     fontSize: '16px',
                     width: 64,
                     height: 64,
-                  }}
-                />
+                  }} />
               </Tooltip>
-            </div>
-          </Header>
-          <Content
-            style={{
-              margin: '24px 16px',
-              padding: 24,
-              background: themValue ? '#FFFFFF' : '#141414',
-              borderRadius: '8px',
-            }}
-          >
-            <Outlet />
-          </Content>
+              <div style={{ float: 'right' }}>
+                <Tooltip placement='bottom' title={i18.t('header.switchTheme')} >
+                  <Button
+                    type='text'
+                    icon={!themValue ? <SUN /> : <NIGHT />}
+                    onClick={() => setTheme(!themValue)}
+                    style={{
+                      fontSize: '16px',
+                      width: 64,
+                      height: 64,
+                    }}
+                  >
+                  </Button>
+                </Tooltip>
+              </div>
+              <div style={{ float: 'right' }}>
+                <Popover style={{ padding: 0 }} content={<>
+                  <div>
+                    <Button style={{ margin: '0' }} onClick={() => { setLanguage('zh-CN') }} type="text">&nbsp;&nbsp;中文&nbsp;&nbsp;</Button>
+                  </div>
+                  <div>
+                    <Button onClick={() => { setLanguage('en-US') }} type="text">English</Button>
+                  </div>
+                </>
+                } >
+                  <span><CN_EN_SVG></CN_EN_SVG></span>
+                </Popover>
+              </div>
+              <div style={{ float: 'right' }}>
+                <Tooltip placement="bottom" title={fullscreen ? i18.t('header.exitFullScreen') : i18.t('header.fullScreen')}>
+                  <Button
+                    type="text"
+                    icon={fullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
+                    onClick={fullScreen}
+                    style={{
+                      fontSize: '16px',
+                      width: 64,
+                      height: 64,
+                    }}
+                  />
+                </Tooltip>
+              </div>
+            </Header>
+            <Content
+              style={{
+                margin: '24px 16px',
+                padding: 14,
+                background: themValue ? '#FFFFFF' : '#141414',
+                borderRadius: '8px',
+                overflowY: 'scroll',
+              }}>
+              <Outlet />
+            </Content>
+          </Layout>
         </Layout>
-      </Layout>
       </CollapsedContext.Provider>
     </ConfigProvider>
   );

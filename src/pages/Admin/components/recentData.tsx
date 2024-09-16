@@ -1,10 +1,11 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import * as echarts from "echarts";
 import style from "./style/recentData.module.css";
 import { CollapsedContext } from "@/pages/Admin/index";
+import useThemeStore from "@/store/index";
 const options1 = {
   title: {
-    text: '四六级历年报考数据'
+    text: '近年数据'
   },
   tooltip: {
     trigger: 'axis'
@@ -67,11 +68,6 @@ const options2 = {
       type: 'pie',
       radius: ['40%', '70%'],
       avoidLabelOverlap: false,
-      itemStyle: {
-        borderRadius: 10,
-        borderColor: '#fff',
-        borderWidth: 2
-      },
       label: {
         show: false,
         position: 'center'
@@ -97,26 +93,19 @@ const options2 = {
   ],
   backgroundColor: 'rgba(0,0,0,0)'
 };
+let chartInstance: echarts.ECharts
+let pieInstance: echarts.ECharts
 function Chart() {
   const chartRef = useRef(null);
   const pieCharts = useRef(null);
-  let chartInstance: echarts.ECharts
-  let pieInstance: echarts.ECharts
-  const collapsed=useContext(CollapsedContext);
-  const [Collapsed, setCollapsed]=useState({collapsed})
-  console.log(collapsed);
-  
+  const collapsed = useContext(CollapsedContext);
+  const themeStore = useThemeStore();
   function renderChart() {
     try {
-      const renderedInstance = echarts.getInstanceByDom(chartRef.current!);
-      const renderedPieInstance = echarts.getInstanceByDom(pieCharts.current!);
-      if (renderedInstance&&renderedPieInstance) {
-        chartInstance = renderedInstance;
-        pieInstance = renderedPieInstance;
-      } else {
-        chartInstance = echarts.init(chartRef.current,'dark');
-        pieInstance = echarts.init(pieCharts.current,'dark');
-      }
+      chartInstance && chartInstance.dispose();
+      pieInstance && pieInstance.dispose();
+      chartInstance = echarts.init(chartRef.current,themeStore.theme? undefined : 'dark');
+      pieInstance = echarts.init(pieCharts.current,themeStore.theme? undefined : 'dark');
       chartInstance.setOption(options1);
       pieInstance.setOption(options2);
     } catch (error: any) {
@@ -128,7 +117,6 @@ function Chart() {
   function resizeHandler() {
     chartInstance.resize();
   }
-  useEffect(()=>{renderChart();},[Collapsed])
   useEffect(() => {
     renderChart();
     window.addEventListener("resize", resizeHandler);
@@ -137,14 +125,20 @@ function Chart() {
       window.removeEventListener("resize", resizeHandler);
     }
   }, []);
+  useEffect(() => {
+    setTimeout(renderChart, 100)
+  })
+  useEffect(() => {
+    setTimeout(resizeHandler, 100)
+  }, [collapsed])
   return (
     <div className={style.container}>
-      <div className={style.header}>
+      <div style={{ backgroundColor: themeStore.theme ? "rgb(250 250 250)" : '#292929' }} className={style.header}>
         <div className={style.greeting}>
           <h2>欢迎您，来自河南科技学院的管理员！</h2>
           <p>今天天气: 晴 29℃~32℃, 空气质量: 优 空气质量指数为5.0，属于良好级别。</p>
         </div>
-        <div className={style.data}>
+        <div className={style.data} style={{ color: "#fff" }}>
           <div style={{ backgroundImage: 'linear-gradient(rgb(31 32 209) 0%, rgb(0, 158, 253) 100%)' }}>
             <div>120</div>
             <h3>报考总数</h3>
@@ -159,8 +153,8 @@ function Chart() {
         <div >
           <div style={{ height: "400px" }} ref={chartRef} />
         </div>
-        <div style={{marginTop:'30px'}}>
-          <div ref={pieCharts} style={{height:'400px'}}></div>
+        <div style={{ marginTop: '30px' }}>
+          <div ref={pieCharts} style={{ height: '400px' }}></div>
         </div>
       </div>
 
