@@ -1,0 +1,181 @@
+import React, { useState } from 'react';
+import { Space, Table, Drawer } from 'antd';
+import type { TableProps } from 'antd';
+import style from './style/allStudents.module.css';
+type ColumnsType<T extends object> = TableProps<T>['columns'];
+interface DataType {
+  key: string;
+  school: string;
+  name: string;
+  major: string;
+  area: string;
+  time: string;
+  pass: string;
+  level: string;
+  sex: string;
+  email: string;
+  account: string;
+}
+
+const data: DataType[] = [
+  {
+    key: '1',
+    name: 'John Brown',
+    major: 'Computer Science',
+    school: 'Stanford University',
+    area: 'New York',
+    time: '2022-01-01',
+    pass: 'Yes',
+    level: 'Undergraduate',
+    sex: 'Male',
+    email: 'john.brown@gmail.com',
+    account: 'john.brown',
+  },
+  {
+    key: '2',
+    name: 'Jane Doe',
+    major: 'Mathematics',
+    school: 'Harvard University',
+    area: 'Boston',
+    time: '2022-01-02',
+    pass: 'No',
+    level: 'Undergraduate',
+    sex: 'Female',
+    email: 'jane.doe@gmail.com',
+    account: 'jane.doe',
+  },
+  {
+    key: '3',
+    name: 'Tom Smith',
+    major: 'Physics',
+    school: 'Yale University',
+    area: 'New Hampshire',
+    time: '2022-01-03',
+    pass: 'Yes',
+    level: 'Undergraduate',
+    sex: 'Male',
+    email: 'tom.smith@gmail.com',
+    account: 'tom.smith',
+  },
+  {
+    key: '4',
+    name: 'Mary Johnson',
+    major: 'Chemistry',
+    school: 'Princeton University',
+    area: 'Chicago',
+    time: '2022-01-04',
+    pass: 'No',
+    level: 'Undergraduate',
+    sex: 'Female',
+    email: 'mary.johnson@gmail.com',
+    account: 'mary.johnson',
+  },
+
+];
+
+const App: React.FC = () => {
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+  const columns: ColumnsType<DataType> = [
+    {
+      title: '姓名',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: '专业',
+      dataIndex: 'major',
+      key: 'major',
+    },
+    {
+      title: '性别',
+      dataIndex:'sex',
+      key:'sex',
+      render: (text) => {
+        if (text === 'Male') {
+          return <span className={style.male}>男</span>;
+        } else {
+          return <span className={style.female}>女</span>;
+        }
+      }
+    },
+    {
+      title: '报考等级',
+      dataIndex: 'level',
+      key: 'level',
+    },
+    {
+      title: '报考时间',
+      dataIndex: 'time',
+      key: 'time',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: () => (
+        <Space size="middle">
+          <a onClick={showDrawer}>查看更多</a>
+        </Space>
+      ),
+    },
+  ];
+  return (
+    <div>
+      <Table columns={columns} pagination={{ position: ['bottomCenter'] }} dataSource={data} />
+      <Drawer title="学生详情" onClose={onClose} open={open}>
+        <table className={style.table}>
+          <tbody>
+            <tr>
+              <td>姓名:</td>
+              <td>{data[0].name}</td>
+            </tr>
+            <tr>
+              <td>学校:</td>
+              <td>{data[0].school}</td>
+            </tr>
+            <tr>
+              <td>专业:</td>
+              <td>{data[0].major}</td>
+            </tr>
+            <tr>
+              <td>地区:</td>
+              <td>{data[0].area}</td>
+            </tr>
+            <tr>
+              <td>报考时间:</td>
+              <td>{data[0].time}</td>
+            </tr>
+            <tr>
+              <td>是否通过:</td>
+              <td>{data[0].pass}</td>
+            </tr>
+            <tr>
+              <td>考试等级:</td>
+              <td>{data[0].level}</td>
+            </tr>
+            <tr>
+              <td>性别:</td>
+              <td>{data[0].sex}</td>
+            </tr>
+            <tr>
+              <td>邮箱:</td>
+              <td>{data[0].email}</td>
+            </tr>
+            <tr>
+              <td>账号:</td>
+              <td>{data[0].account}</td>
+            </tr>
+          </tbody>
+        </table>
+      </Drawer>
+    </div>
+  );
+};
+
+export default App;

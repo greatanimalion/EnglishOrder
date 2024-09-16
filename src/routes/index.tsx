@@ -8,6 +8,7 @@ import { createBrowserRouter, } from "react-router-dom";
 
 //admin
 import RecentData from '@/pages/Admin/components/recentData';
+import AllStudent from '@/pages/Admin/components/allStudents';
 
 // 定义路由配置数组
 const routes =createBrowserRouter([
@@ -28,6 +29,10 @@ const routes =createBrowserRouter([
       {
         path: 'recentData',
         element: <RecentData />,
+      },
+      {
+        path: 'allStudents',
+        element: <AllStudent />,
       }
     ]
   },

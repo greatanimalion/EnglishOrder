@@ -5,9 +5,7 @@ import { CollapsedContext } from "@/pages/Admin/index";
 import useThemeStore from "@/store/index";
 import mapJson from "@/locales/map.json";
 const options1 = {
-  title: {
-    text: '本校近年数据'
-  },
+  
   tooltip: {
     trigger: 'axis'
   },
@@ -197,17 +195,20 @@ function Chart() {
         <div className={style.data} style={{ color: "#fff" }}>
           <div style={{ backgroundImage: 'linear-gradient(rgb(31 32 209) 0%, rgb(0, 158, 253) 100%)' }}>
             <div>120</div>
-            <h3>报考总数</h3>
+            <h3>本校报考总数</h3>
           </div>
           <div style={{ marginLeft: '10px', backgroundImage: 'linear-gradient(rgb(0 203 110) 0%, rgb(0 99 159) 100%)' }}>
             <div>220</div>
-            <h3>通过总数</h3>
+            <h3>本校通过总数</h3>
           </div>
         </div>
       </div>
       <div className={style.chart}>
         <div >
-          <div style={{ height: "400px", backgroundColor: themeStore.theme ? '#ffffff' : '#292929' }} ref={chartRef} />
+          <div style={{ height: "400px", backgroundColor: themeStore.theme ? '#ffffff' : '#292929' }}  >
+            <h2>本校报考人数变化趋势</h2>
+            <div ref={chartRef} style={{ height: '355px'}}></div>
+          </div>
         </div>
         <div>
           <div  style={{ height: '400px', backgroundColor: themeStore.theme ? '#ffffff' : '#292929' }}>
@@ -226,7 +227,7 @@ function Chart() {
             <li>考试内容：阅读、听力、口语。</li>
           </ol>
         </div>
-        <div style={{ backgroundColor: themeStore.theme ? "#FFF" : '#292929' }} ref={mapRef}></div>
+        <div style={{ backgroundColor: themeStore.theme ? "#FFF" : '#292929',paddingLeft:'80px' }} ref={mapRef}></div>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ const App: React.FC = () => {
                 {
                   key: '2',
                   icon: <VideoCameraOutlined />,
-                  label: i18.t('side.ListOfApplicants'),
+                  label: <Link to={'/admin/allStudents'}>{i18.t('side.ListOfApplicants')}</Link>,
                 },
                 {
                   key: '3',
@@ -129,7 +129,7 @@ const App: React.FC = () => {
               style={{
                 margin: '24px 16px',
                 padding: 14,
-                background: themValue ? '#F5F5F5' : '#141414',
+                background: themValue ? '#F5F5F5' : '#000000',
                 borderRadius: '8px',
                 overflowY: 'scroll',
               }}>
