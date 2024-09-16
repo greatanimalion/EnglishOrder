@@ -28,3 +28,7 @@ p {
     border-radius: 4px;
     border: rgb(253, 191, 201) 1px solid;
 }
+.input{
+    width: 250px;
+    margin: 10px;
+}

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Space, Table, Drawer } from 'antd';
+import { Space, Table, Drawer, Input, Button } from 'antd';
 import type { TableProps } from 'antd';
 import style from './style/allStudents.module.css';
+import { SearchOutlined } from '@ant-design/icons';
+const { Search } = Input;
 type ColumnsType<T extends object> = TableProps<T>['columns'];
 interface DataType {
   key: string;
@@ -88,15 +90,11 @@ const App: React.FC = () => {
       dataIndex: 'name',
       key: 'name',
     },
-    {
-      title: '专业',
-      dataIndex: 'major',
-      key: 'major',
-    },
+   
     {
       title: '性别',
-      dataIndex:'sex',
-      key:'sex',
+      dataIndex: 'sex',
+      key: 'sex',
       render: (text) => {
         if (text === 'Male') {
           return <span className={style.male}>男</span>;
@@ -104,6 +102,11 @@ const App: React.FC = () => {
           return <span className={style.female}>女</span>;
         }
       }
+    },
+    {
+      title: '专业',
+      dataIndex: 'major',
+      key: 'major',
     },
     {
       title: '报考等级',
@@ -127,6 +130,24 @@ const App: React.FC = () => {
   ];
   return (
     <div>
+      <div style={{ marginBottom: '10px' }} >
+        <h2 style={{ marginBottom: '10px' }}>特定筛选</h2>
+        <Space.Compact>
+          <Search addonBefore="姓名" placeholder="请输入姓名" allowClear className={style.input} />
+          <Search addonBefore="账号" placeholder="请输入账号" allowClear className={style.input}/>
+        </Space.Compact>
+      </div>
+      <div style={{ marginBottom: '10px' }}>
+        <h2 style={{ marginBottom: '10px' }}>条件筛选(不填不进入筛选条件)</h2>
+        <div>
+          <Input defaultValue="" addonBefore="专业" placeholder="请输入专业" allowClear className={style.input}/>
+          <Input defaultValue="" addonBefore="性别" placeholder="请输入性别" allowClear className={style.input} />
+          <Input defaultValue="" addonBefore="时间" placeholder="请输入时间" allowClear className={style.input} />
+          <Input defaultValue="" addonBefore="报考等级" placeholder="请输入报考等级" allowClear className={style.input} />
+          <Input defaultValue="" addonBefore="通过" placeholder="请输入是否通过" allowClear className={style.input} />
+          <Button className={style.input} style={{ width: '100px' }}><SearchOutlined />搜索</Button>
+          </div>
+      </div>
       <Table columns={columns} pagination={{ position: ['bottomCenter'] }} dataSource={data} />
       <Drawer title="学生详情" onClose={onClose} open={open}>
         <table className={style.table}>

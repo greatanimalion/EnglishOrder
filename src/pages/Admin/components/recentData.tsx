@@ -194,11 +194,11 @@ function Chart() {
         </div>
         <div className={style.data} style={{ color: "#fff" }}>
           <div style={{ backgroundImage: 'linear-gradient(rgb(31 32 209) 0%, rgb(0, 158, 253) 100%)' }}>
-            <div>120</div>
+            <div style={{fontWeight:'800'}}>120</div>
             <h3>本校报考总数</h3>
           </div>
           <div style={{ marginLeft: '10px', backgroundImage: 'linear-gradient(rgb(0 203 110) 0%, rgb(0 99 159) 100%)' }}>
-            <div>220</div>
+            <div style={{fontWeight:'800'}}>220</div>
             <h3>本校通过总数</h3>
           </div>
         </div>
