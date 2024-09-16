@@ -1,30 +1,39 @@
 import React, { useState } from 'react';
 import Logo from '@/components/Logo'
 import {
+  FullscreenExitOutlined,
+  FullscreenOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Button, ConfigProvider, Layout, Menu, Popover, theme } from 'antd';
-import { Switch } from 'antd';
+import { Button, ConfigProvider, Layout, Menu, Popover, theme, Tooltip } from 'antd';
 import i18 from '@/locales/i18next-config'
 import CN_EN_SVG from '@/components/CN-EN';
 import { Link, Outlet } from "react-router-dom";
 import { getInitialProps } from 'react-i18next';
 import useThemeStore from '@/store/index';
+import { SUN, NIGHT } from "@/components/SUN-NIGHT";
+
 const { Header, Sider, Content } = Layout;
 
-const App: React.FC = () => {  
+export const CollapsedContext =React.createContext(false)
+const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
-  //主题默认为true，亮
-  // const [themValue, setThemValue] = useState<boolean>(true);
-  const themValue=useThemeStore<boolean>((state)=>state.theme)
-  const setThemeValue=useThemeStore(state=>state.setTheme)
+  const [fullscreen, setFullscreen] = useState(false)
+  const themValue = useThemeStore<boolean>((state) => state.theme)
+  const setThemeValue = useThemeStore(state => state.setTheme)
   const setTheme = (checked: boolean) => {
     setThemeValue(checked)
   }
+  function fullScreen() {
+    setFullscreen(!fullscreen)
+    if (!fullscreen) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  }
+
   const [language, setLanguage] = useState<string>(getInitialProps().initialLanguage)
   i18.changeLanguage(language)
   return (
@@ -34,6 +43,7 @@ const App: React.FC = () => {
           themValue ? theme.defaultAlgorithm : theme.darkAlgorithm
       }}
     >
+      <CollapsedContext.Provider value={collapsed}>
       <Layout style={{ height: '100vh', minHeight: 280, }}  >
         <Sider trigger={null} collapsible collapsed={collapsed} style={{ backgroundColor: themValue ? '#FFFFFF' : '#141414' }}>
           <Logo title='四六级数据' showTitle={!collapsed} theme={themValue} ></Logo>
@@ -44,7 +54,7 @@ const App: React.FC = () => {
             defaultSelectedKeys={['1']}
             items={[
               {
-                key: '/1',
+                key: '1',
                 icon: <UserOutlined />,
                 label: <Link to={'/admin/recentData'}>{i18.t('side.RecentData')}</Link>,
               },
@@ -63,17 +73,33 @@ const App: React.FC = () => {
         </Sider>
         <Layout>
           <Header style={{ padding: 0, background: themValue ? "#FFFFFF" : "#141414" }}>
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: '16px',
-                width: 64,
-                height: 64,
-              }}
-            />
-            <Switch checkedChildren="亮" unCheckedChildren="暗"  defaultChecked={themValue} onChange={setTheme} style={{ float: 'right', marginRight: '10px', marginTop: '21px' }} />
+            <Tooltip placement="bottom" title={collapsed ? i18.t('header.expand') : i18.t('header.collapse')}>
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                style={{
+                  fontSize: '16px',
+                  width: 64,
+                  height: 64,
+                }}
+              />
+            </Tooltip>
+            <div style={{ float: 'right' }}>
+              <Tooltip placement='bottom' title={i18.t('header.switchTheme')} >
+                <Button
+                  type='text'
+                  icon={!themValue ? <SUN /> : <NIGHT />}
+                  onClick={() => setTheme(!themValue)}
+                  style={{
+                    fontSize: '16px',
+                    width: 64,
+                    height: 64,
+                  }}
+                >
+                </Button>
+              </Tooltip>
+            </div>
             <div style={{ float: 'right' }}>
               <Popover style={{ padding: 0 }} content={<>
                 <div>
@@ -87,7 +113,20 @@ const App: React.FC = () => {
                 <span><CN_EN_SVG></CN_EN_SVG></span>
               </Popover>
             </div>
-
+            <div style={{ float: 'right' }}>
+              <Tooltip placement="bottom" title={fullscreen ? i18.t('header.exitFullScreen') : i18.t('header.fullScreen')}>
+                <Button
+                  type="text"
+                  icon={fullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
+                  onClick={fullScreen}
+                  style={{
+                    fontSize: '16px',
+                    width: 64,
+                    height: 64,
+                  }}
+                />
+              </Tooltip>
+            </div>
           </Header>
           <Content
             style={{
@@ -101,6 +140,7 @@ const App: React.FC = () => {
           </Content>
         </Layout>
       </Layout>
+      </CollapsedContext.Provider>
     </ConfigProvider>
   );
 };

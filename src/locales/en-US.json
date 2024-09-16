@@ -5,9 +5,16 @@
         "PublishAnAnnouncement": "PublishAnnounce"
     },
     "login": {
-        "login": "login",
-        "register": "register",
-        "username": "username",
-        "password": "password"
+        "login": "Login",
+        "register": "Register",
+        "username": "Username",
+        "password": "Password"
+    },
+    "header":{
+        "fullScreen":"FullScreen",
+        "exitFullScreen":"exitFullScreen",
+        "collapse":"Collapse",
+        "expand":"Expand",
+        "switchTheme":"ChangeTheme"
     }
 }

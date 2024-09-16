@@ -9,5 +9,12 @@
         "register": "注册",
         "username": "用户名",
         "password": "密码"
+    },
+    "header":{
+        "fullScreen":"全屏",
+        "exitFullScreen":"退出全屏",
+        "collapse":"收起",
+        "expand":"展开",
+        "switchTheme":"改变主题"
     }
 }
