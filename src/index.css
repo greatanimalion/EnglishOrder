@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
 }
+:root{
+  --primary-color: burlywood;
+  --shallow-color: rgb(136 136 136);
+}
 ::-webkit-scrollbar {
   width: 0;
 }

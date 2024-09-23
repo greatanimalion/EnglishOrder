@@ -12,13 +12,30 @@ import AllStudent from '@/pages/Admin/components/allStudents';
 
 //person
 import Person from '@/pages/person';
+
+//home
+import Index from '@/pages/Home/components/Index';
+import School from '@/pages/Home/components/School';
+import Study from '@/pages/Home/components/Study';
 // 定义路由配置数组
 const routes =createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-
-    // exact: true, // 精确匹配
+    children: [
+      {
+        path: '/home',
+        element: <Index />,
+      },
+      {
+        path: '/school',
+        element: <School />,
+      },
+      {
+        path: '/study',
+        element: <Study />,
+      }
+    ]
   },
   {
     path: '/login',

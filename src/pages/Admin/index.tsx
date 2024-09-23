@@ -21,8 +21,8 @@ const { Header, Sider, Content } = Layout;
 
 export const CollapsedContext = React.createContext(false)
 const App: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [fullscreen, setFullscreen] = useState(false)
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [fullscreen, setFullscreen] = useState<boolean>(false)
   const themValue = useThemeStore<boolean>((state) => state.theme)
   const setThemeValue = useThemeStore(state => state.setTheme)
   const setTheme = (checked: boolean) => {

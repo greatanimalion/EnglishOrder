@@ -1,0 +1,55 @@
+.home {
+    background-color: rgb(238 238 238);
+}
+nav {
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+.main{
+    height: 100vh;
+    overflow: auto;
+}
+.mainImg {
+    background-image: linear-gradient(to top, rgb(238 238 238), rgba(255, 255, 255, 0)),
+        url("https://bpic.588ku.com/back_origin_min_pic/20/04/18/af15f19d14c316b1c92b3754da2b2fad.jpg");
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    filter: blur(2px);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+}
+section {
+    max-width: 1450px;
+    min-width: 900px;
+    padding-top: 60px;
+    margin: 0 auto;
+    position: relative;
+    width: 85%;
+}
+a {
+    text-decoration: none;
+    color: rgb(36, 36, 36);
+}
+
+.div {
+    cursor: pointer;
+    font-family: cursive;
+    padding: 13px 15px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    font-size: 1.2em;
+}
+.div:hover {
+    background-color: #f4f4f4;
+}
