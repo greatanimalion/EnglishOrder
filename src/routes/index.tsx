@@ -4,12 +4,14 @@ import Home from '@/pages/Home';
 import Admin from '@/pages/Admin';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/Error/NotFound';
-import { createBrowserRouter, } from "react-router-dom";
+import { createBrowserRouter} from "react-router-dom";
 
 //admin
 import RecentData from '@/pages/Admin/components/recentData';
 import AllStudent from '@/pages/Admin/components/allStudents';
 
+//person
+import Person from '@/pages/person';
 // 定义路由配置数组
 const routes =createBrowserRouter([
   {
@@ -21,6 +23,10 @@ const routes =createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/person',
+    element: <Person />,
   },
   {
     path: '/admin',

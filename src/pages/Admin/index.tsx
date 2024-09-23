@@ -12,7 +12,7 @@ import {
 import { Button, ConfigProvider, Layout, Menu, Popover, theme, Tooltip } from 'antd';
 import i18 from '@/locales/i18next-config'
 import CN_EN_SVG from '@/components/CN-EN';
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import { getInitialProps } from 'react-i18next';
 import useThemeStore from '@/store/index';
 import { SUN, NIGHT } from "@/components/SUN-NIGHT";
@@ -133,6 +133,7 @@ const App: React.FC = () => {
                 borderRadius: '8px',
                 overflowY: 'scroll',
               }}>
+              <Navigate to="/admin/recentData"></Navigate>
               <Outlet />
             </Content>
           </Layout>

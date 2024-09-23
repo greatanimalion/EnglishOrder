@@ -1,0 +1,86 @@
+.body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+.container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    width: 320px;
+    text-align: center;
+}
+
+.input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+.button {
+    width: 100%;
+    padding: 14px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 12px 0;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+.button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.social-login {
+    margin-top: 20px;
+}
+.social-login button {
+    width: calc(50% - 5px);
+    background-color: #f9f9f9;
+    color: #555;
+    border: 1px solid #ddd;
+    margin: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+.social-login button:hover {
+    background-color: #e0e0e0;
+}
+.form-container{
+    display: none;
+}
+.active {
+    display: block;
+}
+.form-container form {
+    margin: 0;
+}
+.form-container hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+.form-container p {
+    margin: 0;
+}
+.form-container .register-link a{
+    margin-top: 20px;
+    color:rgb(103 142 215);
+}

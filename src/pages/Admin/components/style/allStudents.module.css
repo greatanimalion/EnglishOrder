@@ -8,8 +8,10 @@ p {
     border-collapse: collapse;
     width: 100%;
     font-family: Arial, sans-serif;
+    border: #858585 1px solid;
+    border-radius: 5px;
     td {
-        border: 1px solid #ddd;
+        border: 1px solid #858585;
         padding: 15px;
         text-align: left;
         font-size: 16px;
