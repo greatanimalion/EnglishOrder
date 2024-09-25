@@ -1,7 +1,10 @@
-import { Link, Navigate, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import style from './style/index.module.css';
 import Logo from '@/components/Logo'
+import { useLocation } from 'react-router-dom';
+
 const Home = () => {
+ if(useLocation().pathname === '/')window.location.href = '/school';
 
   return (
     <div className={style.home}>
@@ -11,7 +14,7 @@ const Home = () => {
         </div>
         <div style={{
           display: 'flex',
-          justifyContent:'space-around',
+          justifyContent: 'space-around',
           padding: '10px',
           width: '30%',
           minWidth: '470px',
@@ -24,7 +27,6 @@ const Home = () => {
 
       </nav>
       <main className={style.main}>
-        <Navigate to='/school' />
         <Outlet />
       </main>
     </div>

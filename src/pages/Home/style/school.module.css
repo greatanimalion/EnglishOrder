@@ -12,15 +12,18 @@
     }
     .main {
         width: 100%;
+        padding-top: 0;
+      ul{
         background-color: #ffffff;
+            height: 51px;
+            border-radius: 6px;width: 416px;
+            margin:0 10px;
+      }
         height: 900px;
-        hr{
-            border-color: rgba(203, 255, 255, 0.2);
-        }
     }
     .right {
         background-color: #ffffff;
-        height: 250px;
+        height: 280px;
         min-width: 150px;
     }
     & > div {
@@ -49,42 +52,89 @@
         }
     }
 }
-
+.name {
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    font-size: large;
+    font-weight: bold;
+}
+.name:hover {
+    opacity: 0.7;
+}
 .ellipsis {
     text-overflow: ellipsis;
     overflow: hidden;
     word-break: break-all;
     white-space: nowrap;
-padding: 5px 10px 10px 10px;
-    
+    padding: 5px 10px 10px 10px;
+
     transition: all 0.3s ease-in-out;
     margin: 5px 0;
     border-radius: 6px;
     cursor: pointer;
-    svg{
+    svg {
         margin-right: 4px;
         transform: translateY(4px);
     }
-   
 }
 .ellipsis:hover {
-    background-color:rgb(255 231 199) ;
+    background-color: rgb(255 231 199);
 }
-.title{
+.title {
     list-style: none;
     height: 68px;
-    li{
+    li {
         float: right;
         margin: 10px;
         cursor: pointer;
         color: var(--shallow-color);
         background-color: rgb(255 231 199);
-        padding:5px 10px;
+        padding: 5px 10px;
         border-radius: 5px;
         transition: all 0.3s ease-in-out;
     }
-    li:hover{
+    li:hover {
         background-color: rgb(255, 181, 84);
         color: rgb(255, 255, 255);
+    }
+}
+.content {
+    margin: 10px;
+    outline: rgb(240, 240, 240) solid 1px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex: 1;
+    & > img {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+}
+.time {
+    color: var(--shallow-color);
+    margin: 10px 0;
+}
+.img{
+    border-radius: 10px;
+    width: 300px;
+    margin-top: 10px;
+}
+.more{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    padding-bottom: 0;
+    div{
+        text-align: center;
+        line-height: 40px;
+        width: 70px;
+        border-radius:999999px;
+        cursor: pointer;
+        color: var(--shallow-color);
     }
 }

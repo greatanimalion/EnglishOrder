@@ -17,6 +17,7 @@ import Person from '@/pages/person';
 import Index from '@/pages/Home/components/Index';
 import School from '@/pages/Home/components/School';
 import Study from '@/pages/Home/components/Study';
+import Publish from '@/pages/Home/components/publish';
 // 定义路由配置数组
 const routes =createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const routes =createBrowserRouter([
       {
         path: '/study',
         element: <Study />,
+      },
+      {
+        path:'/publish',
+        element:<Publish/>
       }
     ]
   },
