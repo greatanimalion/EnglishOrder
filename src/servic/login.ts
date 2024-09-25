@@ -1,6 +1,6 @@
 import axios from './Interceptor'
-
-const login = (data: any) => {
+import {loginResponseType} from '@/types/API'
+const login = (data: any): Promise<loginResponseType> => {
   return axios.post('/login', data)
 }
 

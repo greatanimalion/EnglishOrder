@@ -14,7 +14,7 @@ import i18 from '@/locales/i18next-config'
 import CN_EN_SVG from '@/components/CN-EN';
 import { Link, Navigate, Outlet } from "react-router-dom";
 import { getInitialProps } from 'react-i18next';
-import useThemeStore from '@/store/index';
+import useThemeStore from '@/store/useThemeStore';
 import { SUN, NIGHT } from "@/components/SUN-NIGHT";
 
 const { Header, Sider, Content } = Layout;

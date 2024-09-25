@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import * as echarts from "echarts";
 import style from "./style/recentData.module.css";
 import { CollapsedContext } from "@/pages/Admin/index";
-import useThemeStore from "@/store/index";
+import useThemeStore from "@/store/useThemeStore";
 import mapJson from "@/locales/map.json";
 const options1 = {
   

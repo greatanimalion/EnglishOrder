@@ -3,6 +3,8 @@ import style from '../style/school.module.css';
 import img from "@/assets/img/a.jpg"
 import { Button, Popover } from 'antd';
 import { Link } from 'react-router-dom';
+import schoolbg from "@/assets/img/schoolbg.jpg"
+import a from "@/assets/img/1.jpg"
 const announcement = [
   '注意听力范围',
   '四六级考试注意事项。',
@@ -28,7 +30,7 @@ const muen = () => {
 }
 const school = () => {
   return (<>
-    <img src="https://img.51miz.com/Element/00/72/18/16/741e5207_E721816_15d124b0.jpg" alt="" style={{
+    <img src={schoolbg} alt="" style={{
       width: '100%',
       height: '100%',
       objectFit: 'cover',
@@ -60,7 +62,7 @@ const school = () => {
               <div style={{ margin: '10px 0' }} >
                 你们好，我是无病无灾，北京大学2022级本科生，目前在学校学习。
                 <div>
-                <img className={style.img} src="https://ts1.cn.mm.bing.net/th/id/R-C.60f3cc6c9ea74c67accc6e47491ab8a2?rik=pUAD5lH9IIkD2w&riu=http%3a%2f%2fimg.fuxila.com%2fuploads%2f2022%2f11%2f1668571853_637462cd103a7.jpg&ehk=j%2fxhwofWto2Rjk1TmpdrvGdwHxnfDL3TR2RKOIbKG5Q%3d&risl=&pid=ImgRaw&r=0" alt="" />
+                <img className={style.img} src={a} alt="" />
                 </div>
                 <div className={style.more}>
                   <div>点赞</div>

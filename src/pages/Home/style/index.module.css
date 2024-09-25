@@ -19,8 +19,6 @@ nav {
     overflow: auto;
 }
 .mainImg {
-    background-image: linear-gradient(to top, rgb(238 238 238), rgba(255, 255, 255, 0)),
-        url("https://bpic.588ku.com/back_origin_min_pic/20/04/18/af15f19d14c316b1c92b3754da2b2fad.jpg");
     width: 100%;
     height: 400px;
     object-fit: cover;

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CETOralTest, CETWritten } from "./CET46";
 import style from "../style/index.module.css";
 const title = ["CET笔试介绍", "CET口试介绍"]
+import homebg from '@/assets/img/homebg.jpg';
 const index = () => {
   const [open, setOpen] = useState(false);
   const [currentTitle, setCurrentTitle] = useState(0)
@@ -11,7 +12,7 @@ const index = () => {
     setOpen(true)
   }
   return <>
-<div className={style.mainImg}></div>
+<div className={style.mainImg}  style={{backgroundImage:` linear-gradient(to top, rgb(238 238 238), rgba(255, 255, 255, 0)),url(${homebg})`}}></div>
     <section>
       <h2 style={{marginTop:'140px'}}>四六级考试系统</h2>
       <div style={{margin: '30px 0'}}>
