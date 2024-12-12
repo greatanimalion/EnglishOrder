@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Logo from '@/components/Logo'
 import {
   FullscreenExitOutlined,
   FullscreenOutlined,
+  HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
@@ -65,7 +66,7 @@ const App: React.FC = () => {
                 {
                   key: '3',
                   icon: <UploadOutlined />,
-                  label: i18.t('side.PublishAnAnnouncement'),
+                  label: <Link to={'/admin/delieverAnnounce'}>{i18.t('side.PublishAnAnnouncement')}</Link>,
                 },
               ]} />
           </Sider>
@@ -124,17 +125,32 @@ const App: React.FC = () => {
                   />
                 </Tooltip>
               </div>
+              <div style={{ float: 'right' }}>
+                <Tooltip placement="bottom" title='主页'>
+                  <Button
+                    type="text"
+                    icon={<HomeOutlined />}
+                    onClick={()=>window.location.href = '/'}
+                    style={{
+                      fontSize: '16px',
+                      width: 64,
+                      height: 64,
+                    }}
+                  />
+                </Tooltip>
+              </div>
             </Header>
             <Content
               style={{
-                margin: '24px 16px',
-                padding: 14,
+                margin: '10px',
                 background: themValue ? '#F5F5F5' : '#000000',
                 borderRadius: '8px',
                 overflowY: 'scroll',
               }}>
               <Navigate to="/admin/recentData"></Navigate>
-              <Outlet />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Outlet />
+              </Suspense>
             </Content>
           </Layout>
         </Layout>

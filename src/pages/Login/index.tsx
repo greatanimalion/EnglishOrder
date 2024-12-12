@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import API from '@/servic/login';
+import API from '@/services/login';
 import style from './index.module.css';
 import { useState } from 'react';
 import { message } from 'antd';
 import useUserStore from '@/store/useUserStore'
-import loginImg from '@/assets/img/login.jpg'
+
 const login = () => {
     const userStore=useUserStore();
     const Navigate = useNavigate();
@@ -31,7 +31,6 @@ const login = () => {
         }
     }
     return <>
-        <img className={style.img} src={loginImg} alt="" />
         <div className={style.body}>
             <div className={style.container}>
                 <div id="login-form" className={style['form-container'] + " " + style.active}>

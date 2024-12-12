@@ -8,6 +8,7 @@ import { createBrowserRouter} from "react-router-dom";
 //admin
 import RecentData from '@/pages/Admin/components/recentData';
 import AllStudent from '@/pages/Admin/components/allStudents';
+import DelieverAnnounce  from '@/pages/Admin/components/delieverAnnounce';
 
 //home
 import Index from '@/pages/Home/components/Index';
@@ -15,6 +16,8 @@ import School from '@/pages/Home/components/School';
 import Study from '@/pages/Home/components/Study';
 import Publish from '@/pages/Home/components/publish';
 import Person from '@/pages/Home/components/person';
+
+
 
 // 定义路由配置数组
 const routes =createBrowserRouter([
@@ -59,6 +62,10 @@ const routes =createBrowserRouter([
       {
         path: 'allStudents',
         element: <AllStudent />,
+      },
+      {
+        path: 'delieverAnnounce',
+        element: <DelieverAnnounce />,
       }
     ]
   },

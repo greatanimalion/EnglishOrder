@@ -8,8 +8,8 @@ interface ResponseType {
     request: any;
 }
 export type loginResponseType = Omit<ResponseType, "data"> & {
-    data:{
+    data: {
         message: string;
-        result:UserType;
+        result: UserType;
     }
 }

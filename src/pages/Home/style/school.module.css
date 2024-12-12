@@ -132,7 +132,7 @@
     div{
         text-align: center;
         line-height: 40px;
-        width: 70px;
+       font-size: xx-small;
         border-radius:999999px;
         cursor: pointer;
         color: var(--shallow-color);
